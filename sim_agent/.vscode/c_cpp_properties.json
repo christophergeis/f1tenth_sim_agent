@@ -4,7 +4,8 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/opt/ros/foxy/include/**"
+                "/opt/ros/foxy/include/**",
+                "/home/topherpharmer/f1tenth_sim_agent/**"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

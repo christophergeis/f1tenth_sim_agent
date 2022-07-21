@@ -16,16 +16,15 @@ find_package(std_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
 find_package(ackermann_msgs REQUIRED)
-# find_package(agent_interfaces REQUIRED)
+find_package(agent_interfaces REQUIRED)
 # find_package(geometry_msgs REQUIRED)
 # find_package(tf2_ros REQUIRED)
 
-add_executable(e_brake src/e_brake.cpp)
-  ament_target_dependencies(e_brake rclcpp 
+add_executable(lidar_processing src/lidar_processing.cpp)
+  ament_target_dependencies(lidar_processing rclcpp 
     std_msgs 
-    sensor_msgs 
-    nav_msgs 
-    ackermann_msgs)
+    sensor_msgs
+    agent_interfaces)
 
 add_executable(wall_follow src/wall_follow.cpp)
   ament_target_dependencies(wall_follow rclcpp 
@@ -44,8 +43,8 @@ install(DIRECTORY launch
   DESTINATION share/${PROJECT_NAME})
 
 install(TARGETS
-  e_brake
   wall_follow
+  lidar_processing
 #  wall_follow_scan_tf2
   DESTINATION lib/${PROJECT_NAME})
 

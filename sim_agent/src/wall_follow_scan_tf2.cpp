@@ -86,16 +86,6 @@ private:
         RCLCPP_INFO(this->get_logger(), "Distance A: %f, B: %f", scanDistances[0], scanDistances[1]);
     }
 
-    // void PublishWallScan(std::vector<float> angles, std::vector<float> distances)
-    // {
-    //     auto msg = agent_interfaces::msg::WallScan();
-    //     std::vector<float> anglesRad {DegToRad(angles[0]), DegToRad(angles[1])};
-    //     msg.angle = anglesRad;
-    //     msg.distance = distances;
-
-    //     publisherWallScan_->publish(msg);
-    // }
-
     rclcpp::TimerBase::SharedPtr timer_;
     rclcpp::Subscription<agent_interfaces::msg::WallScan>::SharedPtr wallScanSubscriber_;
     std::shared_ptr<tf2_ros::TransformBroadcaster> tfPublisherA_;

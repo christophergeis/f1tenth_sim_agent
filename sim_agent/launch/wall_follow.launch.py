@@ -12,7 +12,7 @@ def generate_launch_description():
             'ttcThresh', default_value='0.35'
         ),
         Node(
-            package='sim_agent',
+            package='safety',
             executable='e_brake',
             name='e_brake',
             parameters=[

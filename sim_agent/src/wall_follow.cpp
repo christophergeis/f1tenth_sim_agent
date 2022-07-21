@@ -129,6 +129,8 @@ class WallFollow : public rclcpp::Node
         
         ranges = scan->ranges;
 
+        //RCLCPP_INFO(this->get_logger(), ("Distance from Right: %f"), GetRange(0.0f));
+
         //send error to pid_control
         PIDController(error);
     }
