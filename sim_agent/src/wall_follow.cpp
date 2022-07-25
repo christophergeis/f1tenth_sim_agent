@@ -18,20 +18,11 @@ using namespace std::chrono_literals;
 
 class WallFollow : public rclcpp::Node
 {
-// Current Best Settings //
-// P = 0.4
-// I = 0.0
-// D = 0.0004
-// L = 0.8
-// Wall Distance = 0.6
-// Angle A = 55.0
-// Angle B = 100.0
-
-  public:
+    public:
     WallFollow() 
     : Node("wall_follow")
     {
-        //Parameters
+        //Get Parameters
         this->declare_parameter<float>("kp", 0.4);
         this->get_parameter("kp", kp);
         this->declare_parameter<float>("ki", 0.0);
@@ -42,9 +33,9 @@ class WallFollow : public rclcpp::Node
         this->get_parameter("L", L);
         this->declare_parameter<float>("wallDist", 0.6);
         this->get_parameter("wallDist", DESIRED_DISTANCE_LEFT);
-        this->declare_parameter<float>("angleA", 55.0);
+        this->declare_parameter<float>("angleA", 55.0); // deg
         this->get_parameter("angleA", angleA_);
-        this->declare_parameter<float>("angleB", 100.0);
+        this->declare_parameter<float>("angleB", 100.0); // deg
         this->get_parameter("angleB", angleB_);
 
         //Subscriptions
@@ -66,7 +57,7 @@ class WallFollow : public rclcpp::Node
     rclcpp::Publisher<ackermann_msgs::msg::AckermannDriveStamped>::SharedPtr publisherDrive_;
     // rclcpp::Publisher<agent_interfaces::msg::WallScan>::SharedPtr publisherWallScan_;
 
-  private:
+    private:
     rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr subscriptionScan_;
     rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr subscriptionBrake_;
     rclcpp::TimerBase::SharedPtr timer_;
@@ -87,12 +78,12 @@ class WallFollow : public rclcpp::Node
     float prevError = 0.0f;
     float error = 0.0f;
     float integral = 0.0f;
-    float maxSteeringAngle = 0.6f;
+    float maxSteeringAngle = 0.6f;  // rad
 
     //SCAN PARAMS//
     float ANGLE_MIN;
     float ANGLE_INC;
-    float ANGLE_RANGE;            // Hokuyo 10LX has 270 degrees scan
+    float ANGLE_RANGE;              // Hokuyo 10LX has 270 degrees scan
     float ANGLE_FACTOR;
     float angleA_;
     float angleB_;
